@@ -1,0 +1,14 @@
+Package: loomer
+Title: A High-Performance Auxiliary R Package for Analyzing the Danish Lifelines Dataset
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Ilya", "Kashnitsky", role = c("aut", "cre"), email = "ilya.kashnitsky@gmail.com", comment = c(ORCID = "0000-0003-1835-8687"))
+    )
+Maintainer: Ilya Kashnitsky <ilya.kashnitsky@gmail.com>
+Description: The {loomer} package modernizes how researchers interact with Lifelines dataset. By combining the blazing speed of the fastverse with customized codebooks, purpose-built demographic functions, and an accessible synthetic test environment, {loomer} improves computational efficiency and code portability.
+License: `use_mit_license()`
+Encoding: UTF-8
+LazyData: true
+LazyDataCompression: xz
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 8.0.0
