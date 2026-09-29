@@ -1,0 +1,50 @@
+Package: loomer
+Type: Package
+Title: Auxiliary Functions to Work with Lifelines Register Data
+Version: 0.1.0
+Authors@R: c(
+    person(
+      given = "Ilya",
+      family = "Kashnitsky",
+      role = c("aut", "cre"),
+      email = "ilya.kashnitsky@gmail.com",
+      comment = c(ORCID = "0000-0003-1835-8687")
+    )
+  )
+Description: Provides high-performance utilities and helper workflows for
+    cohort construction, date handling, categorical integer encoding, and 
+    lexis-type transformations on longitudinal individual-level register 
+    lifelines data. Optimized for large-scale demographic and epidemiological 
+    datasets using modern fastverse and tidyverse backends.
+License: MIT + file LICENSE
+URL: https://github.com/ikashnitsky/loomer
+BugReports: https://github.com/ikashnitsky/loomer/issues
+Depends: 
+    R (>= 4.2.0)
+Imports:
+    clock,
+    collapse (>= 2.0.0),
+    dplyr (>= 1.1.0),
+    fastymd,
+    ggplot2 (>= 3.4.0),
+    kit (>= 0.0.16),
+    nanoparquet,
+    purrr (>= 1.0.0),
+    rlang (>= 1.1.0),
+    stringfish (>= 0.16.0),
+    tibble (>= 3.2.0),
+    tidyselect (>= 1.2.0)
+Suggests:
+    DBI,
+    DSTmetadata,
+    knitr,
+    rmarkdown,
+    roxygen2,
+    spelling,
+    testthat (>= 3.2.0)
+Encoding: UTF-8
+LazyData: true
+LazyDataCompression: xz
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 8.1.0
+Language: en-US
