@@ -59,4 +59,22 @@ Filters and slices longitudinal individual register lifelines into a study
 cohort based on demographic age intervals, calendar study windows, and
 continuous pre- and post-entry exposure criteria.
 }
+\examples{
+data(synthetic_lifelines, package = "loomer")
+
+# Construct a closed cohort: age 20-60 on 2010-01-01 with >= 1 year follow-up
+cohort <- construct_cohort(
+  lifelines_dataset = synthetic_lifelines,
+  age               = c(20, 60),
+  date              = as.Date(c("2010-01-01", "2020-12-31")),
+  open              = FALSE,
+  pre_entry_y       = 0,
+  post_entry_y      = 1.0,
+  multi_lines       = FALSE,
+  plot              = FALSE,
+  verbose           = FALSE
+)
+
+head(cohort)
+}
 \concept{cohort workflows}

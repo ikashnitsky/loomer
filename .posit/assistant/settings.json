@@ -1,0 +1,10 @@
+{
+  "permission": {
+    "read": {
+      "*.R": "allow"
+    },
+    "edit": {
+      "*.R": "allow"
+    }
+  }
+}

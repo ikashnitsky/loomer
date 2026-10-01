@@ -42,7 +42,7 @@ res$encoded
 res$codebook
 }
 \seealso{
-Other encoding workflows: 
-\code{\link{decode_int_to_chars}()}
+Other encoding workflows:
+\code{\link[=decode_int_to_chars]{decode_int_to_chars()}}
 }
 \concept{encoding workflows}

@@ -44,7 +44,7 @@ lifelines_sample <- tibble::tibble(
 decode_int_to_chars(lifelines_sample)
 }
 \seealso{
-Other encoding workflows: 
-\code{\link{encode_chars_to_int}()}
+Other encoding workflows:
+\code{\link[=encode_chars_to_int]{encode_chars_to_int()}}
 }
 \concept{encoding workflows}

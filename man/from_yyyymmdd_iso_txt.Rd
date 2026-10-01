@@ -50,10 +50,7 @@ sample_tbl <- tibble::tibble(
 from_yyyymmdd_iso_txt(sample_tbl)
 }
 \seealso{
-Other date transformations: 
-\code{\link{to_yyyymmdd_iso_txt}()}
-
-Other date transformations: 
-\code{\link{to_yyyymmdd_iso_txt}()}
+Other date transformations:
+\code{\link[=to_yyyymmdd_iso_txt]{to_yyyymmdd_iso_txt()}}
 }
 \concept{date transformations}

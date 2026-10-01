@@ -4,34 +4,48 @@ export(construct_cohort)
 export(decode_int_to_chars)
 export(encode_chars_to_int)
 export(from_yyyymmdd_iso_txt)
+export(in_population_on_date)
 export(to_yyyymmdd_iso_txt)
+export(total_pop_on_date)
 importFrom(clock,date_format)
-importFrom(collapse,"get_vars<-")
-importFrom(collapse,fmatch)
-importFrom(collapse,fmutate)
-importFrom(collapse,fnobs)
-importFrom(collapse,fselect)
-importFrom(collapse,fsubset)
-importFrom(collapse,funique)
-importFrom(collapse,roworder)
-importFrom(dplyr,across)
-importFrom(dplyr,all_of)
-importFrom(dplyr,arrange)
-importFrom(dplyr,cur_column)
-importFrom(dplyr,filter)
-importFrom(dplyr,mutate)
-importFrom(dplyr,select)
-importFrom(dplyr,where)
-importFrom(ggplot2,aes)
-importFrom(ggplot2,geom_segment)
-importFrom(ggplot2,ggplot)
-importFrom(ggplot2,theme_light)
-importFrom(ggplot2,xlab)
-importFrom(ggplot2,ylab)
-importFrom(kit,iif)
+importFrom(collapse,
+  "get_vars<-",
+  fmatch,
+  fmutate,
+  fnobs,
+  fselect,
+  fsubset,
+  funique,
+  roworder
+)
+importFrom(dplyr,
+  across,
+  all_of,
+  arrange,
+  cur_column,
+  filter,
+  mutate,
+  select,
+  where
+)
+importFrom(fastymd,fymd)
+importFrom(ggplot2,
+  aes,
+  geom_segment,
+  ggplot,
+  theme_light,
+  xlab,
+  ylab
+)
+importFrom(kit,
+  count,
+  iif
+)
 importFrom(nanoparquet,read_parquet)
-importFrom(purrr,map)
-importFrom(purrr,set_names)
+importFrom(purrr,
+  map,
+  set_names
+)
 importFrom(rlang,expr)
 importFrom(stringfish,convert_to_sf)
 importFrom(tibble,tibble)
