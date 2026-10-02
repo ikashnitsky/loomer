@@ -1,0 +1,8 @@
+project:
+  type: default
+  render:
+    - README.qmd
+
+format:
+  gfm:
+    output-file: README.md

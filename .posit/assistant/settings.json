@@ -5,6 +5,9 @@
     },
     "edit": {
       "*.R": "allow"
+    },
+    "bash": {
+      "quarto *": "allow"
     }
   }
 }
