@@ -5,6 +5,7 @@ export(decode_int_to_chars)
 export(encode_chars_to_int)
 export(from_yyyymmdd_iso_txt)
 export(in_population_on_date)
+export(simulate_lifelines)
 export(to_yyyymmdd_iso_txt)
 export(total_pop_on_date)
 importFrom(clock,date_format)
@@ -39,7 +40,8 @@ importFrom(ggplot2,
 )
 importFrom(kit,
   count,
-  iif
+  iif,
+  topn
 )
 importFrom(nanoparquet,read_parquet)
 importFrom(purrr,
@@ -47,6 +49,16 @@ importFrom(purrr,
   set_names
 )
 importFrom(rlang,expr)
+importFrom(stats,
+  approx,
+  dnorm,
+  rbinom,
+  rexp,
+  rpois,
+  runif,
+  setNames,
+  uniroot
+)
 importFrom(stringfish,convert_to_sf)
 importFrom(tibble,tibble)
 importFrom(tidyselect,eval_select)
