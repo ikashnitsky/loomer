@@ -9,7 +9,8 @@ in_population_on_date(data, date)
 \arguments{
 \item{data}{A data frame or tibble containing register lifelines. Column
 names are matched case-insensitively for \code{EVENT_START_DATE} and
-\code{EVENT_FINAL_DATE}.}
+\code{EVENT_FINAL_DATE}; these may be \code{Date}, \code{POSIXct}, or ISO
+\code{"YYYY-MM-DD"} character columns.}
 
 \item{date}{An object coercible to \code{Date} (e.g., \code{"YYYY-MM-DD"} string or \code{Date}).}
 }

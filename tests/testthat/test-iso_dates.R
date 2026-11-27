@@ -157,3 +157,31 @@ test_that("to_yyyymmdd_iso_txt and from_yyyymmdd_iso_txt round-trip preserves Da
   # The final frame is identical to the original, Date columns included.
   expect_equal(roundtripped, original_df)
 })
+
+test_that("from_yyyymmdd_iso_txt skips factors and non-ISO 10-char strings", {
+  # Regression: factor columns used to crash detection (nchar() on a factor),
+  # and any 10-character string (e.g. an ID) was parsed into NA dates.
+  input_df <- tibble::tibble(
+    iso = c("2026-03-01", "2026-11-20"),
+    cause = factor(c("Doed", "Udvandret")),
+    id10 = c("ABCDE12345", "FGHIJ67890"),
+    num = c(1.5, 2.5)
+  )
+
+  res <- from_yyyymmdd_iso_txt(input_df)
+
+  expect_s3_class(res$iso, "Date")
+  expect_s3_class(res$cause, "factor")
+  expect_identical(res$id10, input_df$id10)
+  expect_identical(res$num, input_df$num)
+})
+
+test_that("from_yyyymmdd_iso_txt works on the packaged synthetic data", {
+  res <- from_yyyymmdd_iso_txt(synthetic_lifelines)
+
+  expect_s3_class(res$BIRTHDAY, "Date")
+  expect_s3_class(res$EVENT_START_DATE, "Date")
+  expect_s3_class(res$EVENT_FINAL_DATE, "Date")
+  expect_type(res$PERSON_ID, "character")
+  expect_s3_class(res$EVENT_FINAL_CAUSE, "factor")
+})

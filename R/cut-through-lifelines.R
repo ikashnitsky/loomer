@@ -9,7 +9,8 @@
 #'
 #' @param data A data frame or tibble containing register lifelines. Column
 #'   names are matched case-insensitively for `EVENT_START_DATE` and
-#'   `EVENT_FINAL_DATE`.
+#'   `EVENT_FINAL_DATE`; these may be `Date`, `POSIXct`, or ISO
+#'   `"YYYY-MM-DD"` character columns.
 #' @param date An object coercible to `Date` (e.g., `"YYYY-MM-DD"` string or `Date`).
 #'
 #' @return A subset of `data` of the same class containing active records on `date`.
@@ -52,11 +53,13 @@ in_population_on_date <- function(data, date) {
     )
   }
 
+  start_int <- .date_col_to_int(data[[start_var]], start_var)
+  final_int <- .date_col_to_int(data[[final_var]], final_var)
+
   # Fast C-level integer comparison via collapse::fsubset
   collapse::fsubset(
     data,
-    unclass(data[[start_var]]) <= target_int &
-      unclass(data[[final_var]]) >= target_int
+    start_int <= target_int & final_int >= target_int
   )
 }
 
@@ -70,7 +73,9 @@ in_population_on_date <- function(data, date) {
 #' dates. Evaluates numeric integer bounds directly without constructing
 #' intermediate filtered subsets.
 #'
-#' @param data A data frame, tibble, or `data.table` containing register lifelines.
+#' @param data A data frame, tibble, or `data.table` containing register
+#'   lifelines. `EVENT_START_DATE` and `EVENT_FINAL_DATE` may be `Date`,
+#'   `POSIXct`, or ISO `"YYYY-MM-DD"` character columns.
 #' @param date A vector of dates (or `"YYYY-MM-DD"` strings). Supports single dates
 #'   or multiple dates (e.g., annual census series).
 #'
@@ -123,8 +128,8 @@ total_pop_on_date <- function(data, date) {
     )
   }
 
-  start_int <- unclass(data[[start_var]])
-  final_int <- unclass(data[[final_var]])
+  start_int <- .date_col_to_int(data[[start_var]], start_var)
+  final_int <- .date_col_to_int(data[[final_var]], final_var)
 
   # kit::count requires both 'x' and 'value' -> count(x, value = TRUE)
   counts <- vapply(
@@ -139,5 +144,29 @@ total_pop_on_date <- function(data, date) {
   tibble::tibble(
     date = target_dates,
     pop = counts
+  )
+}
+
+
+# internal helpers -------------------------------------------------------------
+
+# Coerce a date column (Date, POSIXct, or ISO "YYYY-MM-DD" character) to integer
+# days since epoch, so that comparisons are numeric rather than lexicographic.
+.date_col_to_int <- function(x, var) {
+  if (inherits(x, "Date")) {
+    return(as.integer(floor(unclass(x))))
+  }
+  if (inherits(x, "POSIXt")) {
+    return(as.integer(unclass(as.Date(x))))
+  }
+  if (is.character(x)) {
+    return(as.integer(unclass(fastymd::fymd(x))))
+  }
+  stop(
+    sprintf(
+      "Column '%s' must be of class Date, POSIXct, or ISO 'YYYY-MM-DD' character.",
+      var
+    ),
+    call. = FALSE
   )
 }
