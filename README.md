@@ -1,6 +1,6 @@
 
 
-# **loomer: A high-performance auxiliary R package for analyzing the Danish Lifelines dataset** <a href='[https://github.com/ikashnitsky/loomer](https://github.com/ikashnitsky/loomer)'><img src='inst/figures/logo-192.png' align="right" width="20%" min-width="200px"/></a>
+# **loomer: A high-performance auxiliary R package for analyzing the Danish Lifelines dataset** <a href='[https://github.com/ikashnitsky/loomer](https://github.com/ikashnitsky/loomer)'><img src='inst/images/logo-192.png' align="right" width="20%" min-width="200px"/></a>
 
 <!-- badges: start -->
 
