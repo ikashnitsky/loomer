@@ -41,15 +41,17 @@ to_yyyymmdd_iso_txt <- function(df) {
 #' Parse ISO 8601 Character Columns to Date Objects
 #'
 #' @description
-#' Parses 10-character string columns formatted as `"YYYY-MM-DD"` into proper
-#' `Date` vectors using fast parsing via \pkg{fastymd}. If target columns are not
-#' explicitly provided, candidate columns are inferred by evaluating string length
-#' on the first row element.
+#' Parses character columns formatted as `"YYYY-MM-DD"` into proper `Date`
+#' vectors using fast parsing via \pkg{fastymd}. If target columns are not
+#' explicitly provided, candidate columns are inferred from the first row
+#' element: only `character` columns whose first value matches the
+#' `"YYYY-MM-DD"` pattern are converted. Factors, numeric and other columns are
+#' never auto-detected.
 #'
 #' @param df A data frame or tibble.
 #' @param date_cols An optional character vector of column names to convert. If
-#'   `NULL` (the default), columns where the first element is exactly 10 characters
-#'   long are selected automatically.
+#'   `NULL` (the default), `character` columns whose first element matches
+#'   `"YYYY-MM-DD"` are selected automatically.
 #'
 #' @return An object of the same class as `df` with selected character columns
 #'   converted to `Date` objects.
@@ -71,8 +73,8 @@ from_yyyymmdd_iso_txt <- function(df, date_cols = NULL) {
   if (is.null(date_cols)) {
     date_cols <- df |>
       dplyr::select(dplyr::where(\(x) {
-        a <- x[1]
-        !is.na(a) && nchar(a) == 10
+        is.character(x) && length(x) > 0L && !is.na(x[1L]) &&
+          grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2}$", x[1L])
       })) |>
       names()
   }

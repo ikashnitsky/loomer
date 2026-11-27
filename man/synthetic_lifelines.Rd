@@ -60,5 +60,9 @@ head(synthetic_lifelines)
 # Check distribution of re-entries (multiple segments per individual)
 table(synthetic_lifelines$N_SEGMENTS)
 }
+\seealso{
+Other datasets:
+\code{\link[=simulate_lifelines]{simulate_lifelines()}}
+}
 \concept{datasets}
 \keyword{datasets}

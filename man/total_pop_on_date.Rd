@@ -7,7 +7,9 @@
 total_pop_on_date(data, date)
 }
 \arguments{
-\item{data}{A data frame, tibble, or \code{data.table} containing register lifelines.}
+\item{data}{A data frame, tibble, or \code{data.table} containing register
+lifelines. \code{EVENT_START_DATE} and \code{EVENT_FINAL_DATE} may be \code{Date},
+\code{POSIXct}, or ISO \code{"YYYY-MM-DD"} character columns.}
 
 \item{date}{A vector of dates (or \code{"YYYY-MM-DD"} strings). Supports single dates
 or multiple dates (e.g., annual census series).}
